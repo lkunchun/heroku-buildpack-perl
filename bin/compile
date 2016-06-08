@@ -96,8 +96,7 @@ if [ -e cpanfile ]; then
     status 'found cpanfile'
 fi
 perl -S cpanm --installdeps . 2>&1 | indent
-status "Done installing dependencies (cpanm)"
-perl -S cpanm --installdeps . | indent
+cpanm --installdeps . 2>&1 | indent
 
 status "Installing Starman"
 perl -S cpanm Starman 2>&1 | indent
