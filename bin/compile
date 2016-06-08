@@ -96,10 +96,11 @@ if [ -e cpanfile ]; then
     status 'found cpanfile'
 fi
 perl -S cpanm --installdeps . 2>&1 | indent
-cpanm --installdeps . 2>&1 | indent
 
 status "Installing Starman"
 perl -S cpanm Starman 2>&1 | indent
+
+perl -S cpanm --installdeps . 2>&1 | indent
 
 source $BP_DIR/bin/steps/hooks/post_compile $ENV_DIR
 
