@@ -95,7 +95,7 @@ status "Installing dependencies (cpanm)"
 if [ -e cpanfile ]; then
     status 'found cpanfile'
 fi
-perl -S cpanm --cpanfile "cpanfile" --installdeps . 2>&1 | indent
+perl -S cpanm --reinstall --installdeps . 2>&1 | indent
 status "Done installing dependencies (cpanm)"
 
 status "Installing Starman"
