@@ -92,7 +92,11 @@ if [ -e cpanfile.snapshot ]; then
 fi
 
 status "Installing dependencies (cpanm)"
-perl -S cpanm --installdeps . 2>&1 | indent
+if [ -e cpanfile ]; then
+    status 'found cpanfile'
+fi
+perl -S cpanm --cpanfile "cpanfile" --installdeps . 2>&1 | indent
+status "Done installing dependencies (cpanm)"
 
 status "Installing Starman"
 perl -S cpanm Starman 2>&1 | indent
