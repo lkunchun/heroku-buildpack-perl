@@ -95,7 +95,7 @@ status "Installing dependencies (cpanm)"
 if [ -e cpanfile ]; then
     status 'found cpanfile'
     cat cpanfile | indent
-    gawk -F "[; ]" '{print $2}' cpanfile | xargs perl -S cpanm 2>&1 | indent
+    awk -F "[; ]" '{print $2}' cpanfile | xargs perl -S cpanm 2>&1 | indent
 fi
 
 #cannot installdeps for some reasons, gonna use a hack, need a better solution [KCL:TODO]
