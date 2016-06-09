@@ -113,5 +113,5 @@ if [ -d "local" ]; then
   status "Caching local to $CACHE_DIR/"
   cp -R local $CACHE_DIR/
 fi
-cp -fR local/lib $BUILD_DIR/vendor/perl-deps/
+cp -fR local $BUILD_DIR/vendor/perl-deps/
 echo $CURRENT_PERL_VERSION >$CACHE_DIR/.perl-version
