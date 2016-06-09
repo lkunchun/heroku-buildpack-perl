@@ -4,9 +4,6 @@ set -e            # fail fast
 set -o pipefail   # don't ignore exit codes when piping output
 
 BUILD_DIR=$1
-
-rm -fr $BUILD_DIR/vendor
-
 CACHE_DIR=$2
 ENV_DIR=$3
 BP_DIR=$(cd $(dirname $0); cd ..; pwd)
@@ -116,4 +113,5 @@ if [ -d "local" ]; then
   status "Caching local to $CACHE_DIR/"
   cp -R local $CACHE_DIR/
 fi
+cp -fR local/lib $BUILD_DIR/vendor/perl-deps/
 echo $CURRENT_PERL_VERSION >$CACHE_DIR/.perl-version
