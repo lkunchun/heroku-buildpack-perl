@@ -4,6 +4,9 @@ set -e            # fail fast
 set -o pipefail   # don't ignore exit codes when piping output
 
 BUILD_DIR=$1
+
+rm -fr $BUILD_DIR/vendor
+
 CACHE_DIR=$2
 ENV_DIR=$3
 BP_DIR=$(cd $(dirname $0); cd ..; pwd)
@@ -27,7 +30,7 @@ PERL_VERSION=${BUILDPACK_PERL_VERSION-$PERL_VERSION}
 PERL_LIBS=${BUILDPACK_PERL_LIBS-'extras'}
 PERL_URL=${BUILDPACK_PERL_URL:-"https://heroku-buildpack-perl.s3.amazonaws.com/$STACK"}
 CPANM_URL=${BUILDPACK_CPANM_URL:-"${PERL_URL%/}/cpanm"}
-CPANM_OPT=${BUILDPACK_CPANM_OPT-"--quiet --notest"}
+CPANM_OPT=${BUILDPACK_CPANM_OPT-"--notest"}
 if [ -n "$BUILDPACK_CPAN_MIRROR" ]; then
   status "Using CPAN mirror $BUILDPACK_CPAN_MIRROR"
   CPANM_OPT="$CPANM_OPT --mirror-only --mirror '$BUILDPACK_CPAN_MIRROR'"
