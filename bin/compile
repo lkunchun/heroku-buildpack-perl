@@ -95,7 +95,7 @@ status "Installing dependencies (cpanm)"
 if [ -e cpanfile ]; then
     status 'found cpanfile'
     cat cpanfile | indent
-    awk -F "[; ]" '{print $2}' cpanfile | xargs perl -S cpanm -l $CACHE_DIR 2>&1 | indent
+    awk -F "[; ]" '{print $2}' cpanfile | xargs perl -S cpanm 2>&1 | indent
 fi
 
 #cannot installdeps for some reasons, gonna use a hack, need a better solution [KCL:TODO]
@@ -103,6 +103,7 @@ perl -S cpanm --installdeps . 2>&1 | indent
 
 status "Installing Starman"
 perl -S cpanm Starman 2>&1 | indent
+perl -S cpanm Email::Simple 2>&1 | indent
 
 source $BP_DIR/bin/steps/hooks/post_compile $ENV_DIR
 
